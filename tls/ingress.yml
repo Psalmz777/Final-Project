@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: portf-ingress
+  annotations:
+    kubernetes.io/ingress.class: 'nginx'
+spec:
+  tls:
+  - secretName: samanthagloria-me-tls
+    hosts:
+      - samanthagloria.me
+  rules:
+  - host: samanthagloria.me
+    http:   
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: portfolio-service
+            port:
+              number: 4000    
+     
+

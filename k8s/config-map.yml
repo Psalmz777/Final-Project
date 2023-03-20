@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: portf-config
+  namespace: default
+data:  
+  PORTF_DB_HOST: postgres-postgresql
+  PORTF_DB_USER: postgres
+  PORTF_DB_NAME: postgres
+  PORTF_DB_TZ: "Africa/Kampala"
+  PORTF_BASE_URL: https://samanthagloria.me
+  PORTF_DB_ENV: production

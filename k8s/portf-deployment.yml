@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portfolio-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: portfolio
+  template:
+    metadata:
+      labels:
+        app: portfolio
+    spec:
+      containers:
+      - name: portfolio
+        image: psalmz7/portfolio:latest
+        env:
+        - name: PORTF_DB_HOST
+          valueFrom:
+            configMapKeyRef: 
+              name: portf-config
+              key: PORTF_DB_HOST
+        - name: PORTF_DB_USER
+          valueFrom:
+            configMapKeyRef: 
+              name: portf-config
+              key: PORTF_DB_USER
+        - name: PORTF_DB_TZ
+          valueFrom:
+            configMapKeyRef: 
+              name: portf-config
+              key: PORTF_DB_TZ
+        - name: PORTF_BASE_URL
+          valueFrom:
+            configMapKeyRef: 
+              name: portf-config
+              key: PORTF_BASE_URL
+        - name: PORTF_DB_ENV
+          valueFrom:
+            configMapKeyRef: 
+              name: portf-config
+              key: PORTF_DB_ENV
+        - name: PORTF_DB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: postgres-postgresql
+              key: postgres-password
+        ports:
+        - containerPort: 80
+      restartPolicy: Always
+---

@@ -1,0 +1,8 @@
+global:
+  storageClass: "do-block-storage" 
+  
+postgresql:
+  username: "sam"
+  password: "dhurnyel"
+  database: "port_prod"
+  
